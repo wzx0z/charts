@@ -12,7 +12,7 @@ steps:
 
 trigger:
   branch:
-  - main
+  - master
   event:
   - custom
   - push
