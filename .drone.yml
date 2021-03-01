@@ -7,8 +7,10 @@ steps:
   - name: git
     image: wuzhixiang/awscli
     commands:
-      - git log -1 --format="%at" -- "code-of-conduct.md"
-      - git log -1 --format="%at" -- "REVIEW_GUIDELINES.md"
+      - git ls-tree -r --name-only HEAD | while read filename; do \
+      - unixtime=$(git log -1 --format="%at" -- "${filename}") \
+      - echo -t ${touchtime} "${filename}" \
+      - done
 
 trigger:
   branch:
