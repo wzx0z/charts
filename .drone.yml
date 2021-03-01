@@ -1,0 +1,19 @@
+kind: pipeline
+type: kubernetes
+#type: docker
+name: dev
+
+steps:
+  - name: git
+    image: wuzhixiang/awscli
+    commands:
+      - git log -1 --format="%at" -- "code-of-conduct.md"
+      - git log -1 --format="%at" -- "REVIEW_GUIDELINES.md"
+
+trigger:
+  branch:
+  - main
+  event:
+  - custom
+  - push
+  - pull_request
